@@ -1,71 +1,72 @@
 ROOT
 
-Start of code
- Integer_type  Variable Assign  Integer End Of Line
- Integer_type  Variable Assign  Integer End Of Line
- Real_type  Variable Assign  Integer +  Integer -  Integer End Of Line
- String_type  Variable End Of Line
- Variable Less_than  -  Variable End Of Line
- Integer_type  Array  Assign {  Integer,  Integer,  Integer,  Integer,  Integer}  End Of Line
- Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array  End Of Line
- Variable Less_than  -  Variable End Of Line
- Integer_type  Array  Assign {  Integer,  Integer,  Integer,  Integer,  Integer}  End Of Line
- Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array  End Of Line
- Integer_type  Variable Assign  Integer factorial  End Of Line
- Print  Variable End Of Line
- Array .  Variable(  Integer)  End Of Line
- Array .  Variable(  Integer)  End Of Line
+Start of block
+ Integer_type  Variable =  Integer;
+ Integer_type  Variable =  Integer;
+ Real_type  Variable =  Integer +  Integer -  Integer;
+ String_type  Variable;
+ Read  Variable;
+ Integer_type  Array  = {  Integer,  Integer,  Integer,  Integer,  Integer} ;
+ Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array ;
+ Read  Variable;
+ Integer_type  Array  = {  Integer,  Integer,  Integer,  Integer,  Integer} ;
+ Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array ;
+ Integer_type  Variable =  factorial ;
+ Print  sin;
+ Print  Variable;
+ Array .  insert (  Integer) ;
+ Array .  insert (  Integer) ;
  Array . sort array
- End Of Line
- Print  Array  End Of Line
- Array .  Variable( )  End Of Line
- String_type  Array  Assign {  String ,  String ,  String }  End Of Line
- Print  Array ,  Array  End Of Line
+;
+ Print  Array ;
+ Array .  remove ( ) ;
+ String_type  Array  = {  String ,  String ,  String } ;
+ Print  Array ,  Array ;
  for  Integer to  Integer by  Integer
-Start of code
- Print  Integer +  Integer +  Integer End Of Line
+Start of block
+ Print  Integer +  Integer +  Integer;
 End of block
- Integer_type  Variable Assign  Integer End Of Line
+ Integer_type  Variable =  Integer;
  Variable Variable Greater_than  Integer
-Start of code
- Print  Integer *  Integer /  Integer End Of Line
- Variable++  End Of Line
+Start of block
+ Print  Integer *  Integer /  Integer;
+ Variable++ ;
 End of block
- Print  log  Integer End Of Line
- Print  sin of  Integer End Of Line
- Variable Assign  Integer End Of Line
+ Print  log ;
+ Print  sin;
+ Variable =  Integer;
  Do 
-Start of code
+Start of block
  Print  Integer *  IntegerEnd of block
- Variable Variable++  Less_than  Integer End Of Line
- Integer_type  Variable Assign  Integer End Of Line
+ Variable Variable++  Less_than  Integer;
+ Integer_type  Variable =  Integer;
  if  Variable Greater_than  Integer
-Start of code
- Print  Integer *  Integer *  Integer End Of Line
+Start of block
+ Print  Integer *  Integer *  Integer;
 End of block
  else 
-Start of code
- Print  Integer *  Integer *  Integer End Of Line
+Start of block
+ Print  Integer *  Integer *  Integer;
 End of block
  if  Variable Greater_than  Integer AND  Variable Less_than  Integer
-Start of code
- Print  Integer End Of Line
+Start of block
+ Print  Integer;
 End of block
  elif  Variable Greater_than  Integer
-Start of code
- Print  Integer End Of Line
+Start of block
+ Print  Integer;
 End of block
- elif  Variable Greater_than  Integer Variable Variable Less_than  Integer
-Start of code
- Print  Integer End Of Line
+ elif  Variable Greater_than  Integer OR  Variable Less_than  Integer
+Start of block
+ Print  Integer;
 End of block
  else 
-Start of code
- Print  Integer End Of Line
+Start of block
+ Print  Integer;
 End of block
  Function(  Integer_type  Variable,  Integer_type  Variable) 
-Start of code
+Start of block
 End of block
- Function(  Variable,  Variable)  End Of Line
- Function(  Variable,  Variable)  End Of Line
+ Function(  Variable,  Variable) ;
+ Function(  Variable,  Variable) ;
 End of block

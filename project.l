@@ -8,15 +8,15 @@ extern FILE *yyout;
 
 %%
 "root"									{printf("ROOT\n");}
-":"										{printf("\nStart of code\n");}
-";"                                     {printf(" End Of Line\n");}
+":"										{printf("\nStart of block\n");}
+";"                                     {printf(";\n");}
 "end"									{printf("End of block\n");}
 "int"									{printf(" Integer_type ");}
 "real" 									{printf(" Real_type ");}
 "string"								{printf(" String_type ");}
 "%"										{printf(" Modulus ");}
 "**"									{printf(" Power ");}
-"=>"									{printf(" Assign ");}
+"=>"									{printf(" = ");}
 "=="									{printf(" Equal ");}
 "++"									{printf("++ ");}
 "+"										{printf(" + ");}
@@ -29,19 +29,19 @@ extern FILE *yyout;
 "<"										{printf(" Less_than ");}
 ">="									{printf(" Greater_than_or_equal ");}
 ">"										{printf(" Greater_than ");}
-"display"[ ]*"->"								{printf(" Print ");}
-"take"[ ]*"<-"									{printf(" Read ");}
+"display"[ ]*"->"						{printf(" Print ");}
+"take"[ ]*"<-"							{printf(" Read ");}
 "^"										{printf(" XOR ");}
 "&"										{printf(" AND ");}
 "|"										{printf(" OR ");}
 "~"										{printf(" NOT ");}
-"SIN"									{printf(" sin of ");}
-"COS"									{printf(" cos of ");}
-"TAN"									{printf(" tan of ");}
-"SQRT"									{printf(" Square root ");}
-"log"									{printf(" log ");}
-"ln"									{printf(" ln ");}
-"!"										{printf(" factorial ");}
+"SIN"[(][ ]*[0-9]+[ ]*[)]				{printf(" sin");}
+"COS"[(][ ]*[0-9]+[ ]*[)]				{printf(" cos");}
+"TAN"[(][ ]*[0-9]+[ ]*[)]				{printf(" tan");}
+"SQRT"[(][ ]*[0-9]+[ ]*[)]				{printf(" Square root ");}
+"log"[(][ ]*[0-9]+[ ]*[)]				{printf(" log ");}
+"ln"[(][ ]*[0-9]+[ ]*[)]				{printf(" ln ");}
+[0-9]+"!"								{printf(" factorial ");}
 "if"									{printf(" if ");}
 "elif"									{printf(" elif ");}
 "else"									{printf(" else ");}
@@ -61,7 +61,7 @@ extern FILE *yyout;
 [0-9]+  								{printf(" Integer");}
 [0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		{printf(" Double");}
 "module"[ ]+[A-Za-z0-9]+ 				{printf(" Function");}
-"goto"[ ]+[A-Za-z0-9]+ 				{printf(" Function");}
+"goto"[ ]+[A-Za-z0-9]+ 					{printf(" Function");}
 [A-Za-z0-9]+ 							{printf(" Variable");}
 [@][A-Za-z0-9]+ 						{printf(" Array ");}
 \"(\\.|[^"\\])*\"						{printf(" String ");}

@@ -3,21 +3,22 @@ root:
 	int b => 30;
 	real xy => 5+6-6;
 	string str;
-	read<- str;
+	take<- str;
 	int @ara => {1,2,3,4,5};
 	display->a,b,c,xy,str,@ara;
-	read <- str;
+	take <- str;
 	int @ara => {1,2,3,4,5};
 	display->a,b,c,xy,str,@ara;
 	int factorial => 5!;
+	display-> SIN(45);
 	
 	display->factorial;
 	
-	@ara.push(1);
-	@ara.push(2);
+	@ara.add(1);
+	@ara.add(2);
 	@ara.sort;
 	display->@ara;
-	@ara.pop();
+	@ara.remove();
 	string @ara2 => {"abc","def","ghi"};
 	display->@ara,@ara2;
 
@@ -30,8 +31,12 @@ root:
 		a++;
 	end
 
-	display-> log 5;
-	display-> SIN 45;
+	display-> log(5);
+	display-> SIN(45);
+	display-> COS(45);
+	display-> log(45);
+	display-> ln(45);
+	display-> SQRT(45);
 
 	a=>12;
 	repeat:
