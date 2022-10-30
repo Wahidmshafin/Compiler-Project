@@ -1,0 +1,39 @@
+root:
+	int a => 5;
+	int b => 30;
+	real xy => 5+6-6;
+	string str;
+	read<- str;
+	int @ara => {1,2,3,4,5};
+	display->a,b,c,xy,str,@ara;
+	read <- str;
+	int @ara => {1,2,3,4,5};
+	display->a,b,c,xy,str,@ara;
+	int factorial => 5!;
+	
+	display->factorial;
+	
+	@ara.push(1);
+	@ara.push(2);
+	@ara.sort;
+	display->@ara;
+	@ara.pop();
+	string @ara2 => {"abc","def","ghi"};
+	display->@ara,@ara2;
+
+	from 5 to 8 by 1:
+		display->1+2+3;
+	end
+	int a => 5;
+	while a>0:
+		display->2*4/3;
+		a++;
+	end
+
+	a=>12;
+	repeat:
+		display->12*12
+	end
+	while a++<15 ;
+	
+end

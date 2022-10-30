@@ -1,0 +1,47 @@
+ROOT
+Start of code
+ Integer_type  Variable Assign  Integer End Of Line
+ Integer_type  Variable Assign  Integer End Of Line
+ Real_type  Variable Assign  Integer +  Integer -  Integer End Of Line
+ String_type  Variable End Of Line
+ Variable Helper Variable End Of Line
+ Integer_type  Array  Assign  {  Integer ,  Integer ,  Integer ,  Integer ,  Integer }  End Of Line
+ Print  Helper Variable ,  Variable ,  Variable ,  Variable ,  Variable ,  Array  End Of Line
+ Variable Helper Variable End Of Line
+ Integer_type  Array  Assign  {  Integer ,  Integer ,  Integer ,  Integer ,  Integer }  End Of Line
+ Print  Helper Variable ,  Variable ,  Variable ,  Variable ,  Variable ,  Array  End Of Line
+ Integer_type  Variable Assign  Integer factorial  End Of Line
+ Print  Helper Variable End Of Line
+ Array 
+Unknown character
+ Variable (  Integer )  End Of Line
+ Array 
+Unknown character
+ Variable (  Integer )  End Of Line
+ Array 
+Unknown character
+sort array
+ End Of Line
+ Print  Helper Array  End Of Line
+ Array 
+Unknown character
+ Variable (  )  End Of Line
+ String_type  Array  Assign  {  String  ,  String  ,  String  }  End Of Line
+ Print  Helper Array  ,  Array  End Of Line
+ for  Integer to  Integer by  IntegerStart of code
+ Print  Helper Integer +  Integer +  Integer End Of Line
+
+End of block
+ Integer_type  Variable Assign  Integer End Of Line
+ Variable Variable Greater than  IntegerStart of code
+ Print  Helper Integer *  Integer /  Integer End Of Line
+ Variable++  End Of Line
+
+End of block
+ Variable Assign  Integer End Of Line
+ Do Start of code
+ Print  Helper Integer *  Integer
+End of block
+ Variable Variable++  Less than  Integer End Of Line
+
+End of block
