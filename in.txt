@@ -30,10 +30,40 @@ root:
 		a++;
 	end
 
+	display-> log 5;
+	display-> SIN 45;
+
 	a=>12;
 	repeat:
 		display->12*12
 	end
 	while a++<15 ;
+
+	int p => 25;
+	if p>30:
+		display->1*2*3;
+	end
+	else:
+		display->2*3*4;
+	end
+
+	if p>20 & p<25:
+		display->1;
+	end
+	elif p>30 :
+		display->2;
+	end
+	elif p>20 | p<10:
+		display->3;
+	end
+	else:
+		display->4;
+	end
+
+	module myFunction(int a,int b):
+
+	end
+	goto myFunction(a,p);
+	goto myFunction(a,c);
 	
 end

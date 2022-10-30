@@ -8,9 +8,9 @@ extern FILE *yyout;
 
 %%
 "root"									{printf("ROOT\n");}
-":"										{printf("Start of code\n");}
+":"										{printf("\nStart of code\n");}
 ";"                                     {printf(" End Of Line\n");}
-"end"									{printf("\nEnd of block\n");}
+"end"									{printf("End of block\n");}
 "int"									{printf(" Integer_type ");}
 "real" 									{printf(" Real_type ");}
 "string"								{printf(" String_type ");}
@@ -24,15 +24,13 @@ extern FILE *yyout;
 "-"										{printf(" - ");}
 "*"										{printf(" * ");}
 "/"										{printf(" / ");}
-"!="									{printf(" Not Equal");}	
-"<="									{printf(" Less than or equal ");}
-"<"										{printf(" Less than ");}
-">="									{printf(" Greater than or equal ");}
-">"										{printf(" Greater than ");}
-"->"									{printf(" Helper");}
-"<-"									{printf(" Helper");}
-"display"								{printf(" Print ");}
-"take"									{printf(" Read ");}
+"!="									{printf(" Not_Equal");}	
+"<="									{printf(" Less_than_or_equal ");}
+"<"										{printf(" Less_than ");}
+">="									{printf(" Greater_than_or_equal ");}
+">"										{printf(" Greater_than ");}
+"display"[ ]*"->"								{printf(" Print ");}
+"take"[ ]*"<-"									{printf(" Read ");}
 "^"										{printf(" XOR ");}
 "&"										{printf(" AND ");}
 "|"										{printf(" OR ");}
@@ -62,12 +60,14 @@ extern FILE *yyout;
 
 [0-9]+  								{printf(" Integer");}
 [0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		{printf(" Double");}
+"module"[ ]+[A-Za-z0-9]+ 				{printf(" Function");}
+"goto"[ ]+[A-Za-z0-9]+ 				{printf(" Function");}
 [A-Za-z0-9]+ 							{printf(" Variable");}
 [@][A-Za-z0-9]+ 						{printf(" Array ");}
 \"(\\.|[^"\\])*\"						{printf(" String ");}
-[,()%{}\]\[]	 					{printf(" %s ",yytext);}
+[,.()%{}\]\[]	 						{printf("%s ",yytext);}
 [ \t\n]									{}
-.										{printf("\nUnknown character\n");}
+.										{printf("\nUnknown character%s\n", yytext);}
 %%
 int yywrap()
 {
