@@ -11,15 +11,14 @@ Start of block
  Read  Variable;
  Integer_type  Array  = {  Integer,  Integer,  Integer,  Integer,  Integer} ;
  Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array ;
- Integer_type  Variable =  factorial ;
- Print  sin;
- Print  Variable;
- Array .  insert (  Integer) ;
- Array .  insert (  Integer) ;
- Array . sort array
+
+Comment
+ Array .insert (  Integer) ;
+ Array .insert (  Integer) ;
+ Array .sort array
 ;
  Print  Array ;
- Array .  remove ( ) ;
+ Array .remove ( ) ;
  String_type  Array  = {  String ,  String ,  String } ;
  Print  Array ,  Array ;
  for  Integer to  Integer by  Integer
@@ -32,13 +31,25 @@ Start of block
  Print  Integer *  Integer /  Integer;
  Variable++ ;
 End of block
+
+Comment
  Print  log ;
  Print  sin;
+ Print  cos;
+ Print  log ;
+ Print  ln ;
+ Print  Square root ;
+ Print  factorial ;
+
+Comment
  Variable =  Integer;
  Do 
 Start of block
- Print  Integer *  IntegerEnd of block
- Variable Variable++  Less_than  Integer;
+ Print  Integer *  Integer;
+End of block
+ While Variable++  Less_than  Integer;
+
+Comment
  Integer_type  Variable =  Integer;
  if  Variable Greater_than  Integer
 Start of block
@@ -64,9 +75,12 @@ End of block
 Start of block
  Print  Integer;
 End of block
- Function(  Integer_type  Variable,  Integer_type  Variable) 
+
+Comment
+ declare_Function(  Integer_type  Variable,  Integer_type  Variable) 
 Start of block
+ Integer_type  Variable =  Variable +  Variable;
 End of block
- Function(  Variable,  Variable) ;
- Function(  Variable,  Variable) ;
+ call_Function(  Variable,  Variable) ;
+ call_Function(  Variable,  Variable) ;
 End of block
