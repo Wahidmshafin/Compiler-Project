@@ -287,11 +287,11 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 static yyconst short int yy_accept[184] =
     {   0,
         0,    0,   62,   60,   59,   59,   60,   60,   60,    8,
-       26,   58,   16,   13,   15,   49,   17,   51,    2,    3,
+       26,   58,   12,   10,   11,   49,   13,   51,    2,    3,
        20,   60,   22,   60,   55,   55,   55,   55,   25,   55,
        55,   55,   55,   55,   55,   55,   55,   55,   55,   55,
-       55,   55,   27,   28,   18,    0,   57,    0,    9,   12,
-       14,   52,   35,    0,   51,   55,   19,   11,   10,   21,
+       55,   55,   27,   28,   18,    0,   57,    0,    9,   15,
+       16,   52,   35,    0,   51,   55,   19,   17,   14,   21,
        56,   55,   55,   55,   55,   55,   43,   55,   55,   55,
        55,   55,   36,   55,   55,   55,   55,   55,   55,   55,
        55,   55,   42,   55,   50,    0,   55,   55,   55,   55,
@@ -809,287 +809,287 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 17 "project.l"
+#line 19 "project.l"
 {printf(" Integer_type ");}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 18 "project.l"
+#line 20 "project.l"
 {printf(" Real_type ");}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 19 "project.l"
+#line 21 "project.l"
 {printf(" String_type ");}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 20 "project.l"
+#line 24 "project.l"
 {printf(" Modulus ");}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 21 "project.l"
+#line 25 "project.l"
 {printf(" Power ");}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 22 "project.l"
-{printf(" = ");}
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 23 "project.l"
-{printf(" Equal ");}
-	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 24 "project.l"
-{printf("++ ");}
-	YY_BREAK
-case 13:
-YY_RULE_SETUP
-#line 25 "project.l"
+#line 26 "project.l"
 {printf(" + ");}
 	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 26 "project.l"
-{printf("-- ");}
-	YY_BREAK
-case 15:
+case 11:
 YY_RULE_SETUP
 #line 27 "project.l"
 {printf(" - ");}
 	YY_BREAK
-case 16:
+case 12:
 YY_RULE_SETUP
 #line 28 "project.l"
 {printf(" * ");}
 	YY_BREAK
-case 17:
+case 13:
 YY_RULE_SETUP
 #line 29 "project.l"
 {printf(" / ");}
 	YY_BREAK
-case 18:
+case 14:
 YY_RULE_SETUP
 #line 30 "project.l"
+{printf(" = ");}
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 31 "project.l"
+{printf("++ ");}
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 32 "project.l"
+{printf("-- ");}
+	YY_BREAK
+case 17:
+YY_RULE_SETUP
+#line 35 "project.l"
+{printf(" Equal ");}
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 36 "project.l"
 {printf(" Not_Equal");}	
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 31 "project.l"
+#line 37 "project.l"
 {printf(" Less_than_or_equal ");}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 32 "project.l"
+#line 38 "project.l"
 {printf(" Less_than ");}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 33 "project.l"
+#line 39 "project.l"
 {printf(" Greater_than_or_equal ");}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 34 "project.l"
+#line 40 "project.l"
 {printf(" Greater_than ");}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 35 "project.l"
+#line 43 "project.l"
 {printf(" Print ");}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 36 "project.l"
+#line 44 "project.l"
 {printf(" Read ");}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 37 "project.l"
+#line 47 "project.l"
 {printf(" XOR ");}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 38 "project.l"
+#line 48 "project.l"
 {printf(" AND ");}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 39 "project.l"
+#line 49 "project.l"
 {printf(" OR ");}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 40 "project.l"
+#line 50 "project.l"
 {printf(" NOT ");}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 41 "project.l"
+#line 53 "project.l"
 {printf(" sin");}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 42 "project.l"
+#line 54 "project.l"
 {printf(" cos");}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 43 "project.l"
+#line 55 "project.l"
 {printf(" tan");}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 44 "project.l"
+#line 56 "project.l"
 {printf(" Square root ");}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 45 "project.l"
+#line 57 "project.l"
 {printf(" log ");}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 46 "project.l"
+#line 58 "project.l"
 {printf(" ln ");}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 47 "project.l"
+#line 59 "project.l"
 {printf(" factorial ");}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 48 "project.l"
+#line 62 "project.l"
 {printf(" if ");}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 49 "project.l"
+#line 63 "project.l"
 {printf(" elif ");}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 50 "project.l"
+#line 64 "project.l"
 {printf(" else ");}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 51 "project.l"
+#line 67 "project.l"
 {printf(" Do ");}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 52 "project.l"
+#line 68 "project.l"
 {printf(" While");}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 53 "project.l"
+#line 69 "project.l"
 {printf(" for ");}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 54 "project.l"
+#line 70 "project.l"
 {printf(" to ");}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 55 "project.l"
+#line 71 "project.l"
 {printf(" by ");}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 56 "project.l"
+#line 74 "project.l"
 {printf("declare function\n");}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 57 "project.l"
+#line 75 "project.l"
 {printf("call function");}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 58 "project.l"
+#line 76 "project.l"
 {printf("sort array\n");}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 59 "project.l"
+#line 79 "project.l"
 {printf("insert ");}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 60 "project.l"
+#line 80 "project.l"
 {printf("remove ");}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 61 "project.l"
+#line 81 "project.l"
 {printf(".");}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 63 "project.l"
+#line 84 "project.l"
 {printf("\nComment\n");}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 64 "project.l"
+#line 85 "project.l"
 {printf(" Integer");}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 65 "project.l"
+#line 86 "project.l"
 {printf(" Double");}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 66 "project.l"
+#line 87 "project.l"
 {printf(" declare_Function");}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 67 "project.l"
+#line 88 "project.l"
 {printf(" call_Function");}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 68 "project.l"
+#line 89 "project.l"
 {printf(" Variable");}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 69 "project.l"
+#line 90 "project.l"
 {printf(" Array ");}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 70 "project.l"
+#line 91 "project.l"
 {printf(" String ");}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 71 "project.l"
+#line 92 "project.l"
 {printf("%s ",yytext);}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 72 "project.l"
+#line 93 "project.l"
 {}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 73 "project.l"
+#line 94 "project.l"
 {printf("\nUnknown character%s\n", yytext);}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 74 "project.l"
+#line 95 "project.l"
 ECHO;
 	YY_BREAK
 #line 1096 "lex.yy.c"
@@ -1978,7 +1978,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 74 "project.l"
+#line 95 "project.l"
 
 int yywrap()
 {
