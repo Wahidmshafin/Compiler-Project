@@ -87,7 +87,7 @@ int yyparse();
 "goto"[ ]+			 					 {printf(" call_Function");}
 [@][A-Za-z0-9]+ 						 {printf(" Array ");}
 \"(\\|[^"\\])*\"						 {printf(" String ");}
-[,.()%{}\]\[]	 						 {printf("%s ",yytext);}
+[,.(){}\]\[]	 						 {printf("%s ",yytext);}
 [ \t\n]									 {}
 .										 {printf("\nUnknown character%s\n", yytext);}
 %%

@@ -46,20 +46,26 @@
         int isArray;
     }var;
 
+    /*structure for storing user-defined modules(functions).*/
+    typedef struct function{
+        char *fname;
+        var *fptr;
+        int varCount;
+    }stack;
+
 
     var *vptr; // Pointer for variables
+    stack *fptr; // Pointer for functions
 
-
-    int varCount=0;
-    int varTaken=0;
-    int varCnt=0;
-
+    int varCount=0, funCount=0;
+    int varTaken=0, funCount=0;
+    int conditionMatched=0;
 
 
     /* Get the index of variable that is called. If not found return -1. */
         int getVariableIndex(char *varName)
         {
-            for(int i = 0 ; i<varCnt; i++){
+            for(int i = 0 ; i<varCount; i++){
                 if(strcmp(vptr[i].name,varName)==0){
                     return i;
                 }
@@ -251,8 +257,16 @@
 %token AND OR NOT XOR LOG LOG2 LN SIN COS TAN FACTORIAL SQRT
 %token IF ELIF ELSE CHOICE DEFAULT OPTION ASSIGN
 %token FROM TO REPEAT UNTILL BY AS
-%token MODULE GOTO SORT
+%token MODULE GOTO SORT COMMENT
 %token statements
+
+
+
+%type <integer> INTEGER ROOT END START program while_conditions
+%type <string> VARIABLE INTEGER_TYPE REAL_TYPE STRING_TYPE STRING ARRAY_VAR COMMENT
+%type <real> expr REAL statements statement 
+%nonassoc ELIF 
+%nonassoc ELSE
 
 
 %left EQUAL NOT_EQUAL LOE GOE LESS GREATER
@@ -264,12 +278,43 @@
 %left SIN COS TAN
 
 %%
-program:    /* program will be selected as start node by default. */
-            ROOT START statements END 
+program:    ROOT START statements END 
                 {
                     printf("\n\n     -------Program Compiled Successfully-------\n\n\n");
                 }
-    ;
+;
+
+statements:     {}
+                |statements statement   {}
+;
+
+statement:      EOL     {}
+                |COMMENT
+                {
+                    SetColor(1);
+                    printf(" %s\n",$1);
+                    SetColor(2);
+                }
+                |declaration    EOL     {}
+                |assigns    EOL     {}
+                |display    EOL     {}
+                |take       EOL     {}
+                |expr       EOL
+                {
+                    SetColor(8);
+                    printf("Expression: %.2lf\n",$1);
+                    $$=$1;
+                    SetColor(2);
+                }
+                |if_statements  {conditionMatched=0}
+                |loop_statements    {}
+                |module_statements
+                {
+                    SetColor(8);
+                    printf("Module Name: %s\n",)
+                }
+
+
 %%
 
 
