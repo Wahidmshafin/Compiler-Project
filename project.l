@@ -1,92 +1,91 @@
 %{
 #include <stdio.h>
+#include "project.tab.h"
+#include<string.h>
+#include<math.h>
+extern int yydebug;
 extern FILE *yyin;
 extern FILE *yyout;
 
+int yyparse();	
+
 %}
 
-number 			[0-9]+
-variable 		[A-Za-z0-9]+
 
 %%
-"root"									 {printf("ROOT\n");}
-":"										 {printf("\nStart of block\n");}
-";"                                      {printf(";\n");}
-"end"									 {printf("End of block\n");}
+"root"									 {return ROOT;}
+":"										 {return START;}
+";"                                      {return EOL;}
+"end"									 {return END;}
 
 
-"int"									 {printf(" Integer_type ");}
-"real" 									 {printf(" Real_type ");}
-"string"								 {printf(" String_type ");}
+"int"									 {return INTEGER_TYPE;}
+"real" 									 {return REAL_TYPE;}
+"string"								 {return STRING_TYPE;}
 
 
-"%"										 {printf(" Modulus ");}
-"**"									 {printf(" Power ");}
-"+"										 {printf(" + ");}
-"-"										 {printf(" - ");}
-"*"										 {printf(" * ");}
-"/"										 {printf(" / ");}
-"=>"									 {printf(" = ");}
-"++"									 {printf("++ ");}
-"--"									 {printf("-- ");}
+"%"										 {return MODULE;}
+"**"									 {return POWER;}
+"+"										 {return PLUS;}
+"-"										 {return MINUS;}
+"*"										 {return MUL;}
+"/"										 {return DIV;}
+"=>"									 {return ASSIGN;}
+"++"									 {return PPLUS;}
+"--"									 {return MMINUS;}
 
 
-"=="									 {printf(" Equal ");}
-"!="									 {printf(" Not_Equal");}	
-"<="									 {printf(" Less_than_or_equal ");}
-"<"										 {printf(" Less_than ");}
-">="									 {printf(" Greater_than_or_equal ");}
-">"										 {printf(" Greater_than ");}
+"=="									 {return EQUAL;}
+"!="									 {return NOT_EQUAL;}
+"<="									 {return LOE;}
+"<"										 {return LESS;}
+">="									 {return GOE;}
+">"										 {return GREATER;}
 
 
-"display"[ ]*"->"						 {printf(" Print ");}
-"take"[ ]*"<-"							 {printf(" Read ");}
+"display"[ ]*"->"						 {return DISPLAY;}
+"take"[ ]*"<-"							 {return TAKE;}
 
 
-"^"										 {printf(" XOR ");}
-"&"										 {printf(" AND ");}
-"|"										 {printf(" OR ");}
-"~"										 {printf(" NOT ");}
+"^"										 {return XOR;}
+"&"										 {return AND;}
+"|"										 {return OR;}
+"~"										 {return NOT;}
 
 
-"SIN"[(][ ]*({number}|{variable})[ ]*[)] {printf(" sin");}
-"COS"[(][ ]*({number}|{variable})[ ]*[)] {printf(" cos");}
-"TAN"[(][ ]*({number}|{variable})[ ]*[)] {printf(" tan");}
-"SQR"[(][ ]*({number}|{variable})[ ]*[)] {printf(" Square root ");}
-"log"[(][ ]*({number}|{variable})[ ]*[)] {printf(" log ");}
-"ln"[(][ ]*({number}|{variable})[ ]*[)]	 {printf(" ln ");}
-({number}|{variable})"!"				 {printf(" factorial ");}
+"SIN" 									 {return SIN;}
+"COS" 									 {return COS;}
+"TAN" 									 {return TAN;}
+"SQR" 									 {return SQRT;}
+"log" 									 {return LOG;}
+"ln"  									 {return LN;}
 
 
-"if"									 {printf(" if ");}
-"elif"									 {printf(" elif ");}
-"else"									 {printf(" else ");}
+"if"									 {return IF;}
+"elif"									 {return ELIF;}
+"else"									 {return ELSE;}
+
+"repeat"								 {return REPEAT;}
+"until"									 {return UNTILL;}
+"from"									 {return FROM;}
+"to"									 {return TO;}
+"by"									 {return BY;}
 
 
-"repeat"								 {printf(" Do ");}
-"until"									 {printf(" While");}
-"from"									 {printf(" for ");}
-"to"									 {printf(" to ");}
-"by"									 {printf(" by ");}
-
-
-"module"								 {printf("declare function\n");}
-"goto"									 {printf("call function");}
-"sort"									 {printf("sort array\n");}
-
-
+"module"								 {return MODULE;}
+"goto"									 {return GOTO;}
+"sort"									 {return SORT;}
 "add"									 {printf("insert ");}
 "remove"								 {printf("remove ");}
  "."									 {printf(".");}
 
 
 [#][^#]+[#]								 {printf("\nComment\n");}
-{number}  								 {printf(" Integer");}
-[0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		 {printf(" Double");}
-"module"[ ]+{variable} 					 {printf(" declare_Function");}
-"goto"[ ]+{variable} 					 {printf(" call_Function");}
-{variable}								 {printf(" Variable");}
-[@]{variable} 							 {printf(" Array ");}
+[0-9]+  								 {yylval.integer = atoi(yytext);return INTEGER;}
+[0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		 {yylval.real=atof(yytext); return REAL;}
+"module"[ ]								 {printf(" declare_Function");}
+"goto"[ ]+			 					 {printf(" call_Function");}
+[@][A-Za-z0-9]+ 						 {printf(" Array ");}
 \"(\\|[^"\\])*\"						 {printf(" String ");}
 [,.()%{}\]\[]	 						 {printf("%s ",yytext);}
 [ \t\n]									 {}
@@ -96,11 +95,6 @@ int yywrap()
 {
 	return 1;
 }
-int main()
-{
-	
-	yyin = freopen("in.txt","r",stdin);
-	yyout = freopen("out.txt","w",stdout);
-	yylex();
-	return 0;
+int yyerror(char *s){
+	fprintf(stderr,"error: %s\n", s);
 }
