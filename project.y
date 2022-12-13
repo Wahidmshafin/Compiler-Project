@@ -284,7 +284,7 @@ program:    ROOT START statements END
                 }
 ;
 
-statements:     {}
+statements:     
                 |statements statement   {}
 ;
 
@@ -311,7 +311,18 @@ statement:      EOL     {}
                 |module_statements
                 {
                     SetColor(8);
-                    printf("Module Name: %s\n",)
+                    printf("Module Name: %s\n",fptr[funCount].fname);
+                    printf("Paremerters: \n");
+                    for(int i=0;i<fptr[funCount].varCount;i++)
+                    {
+                         printf("Parameter Name:%s Data Type: ",stk[funCount].fptr[i].name);
+                            if (stk[funCount].fptr[i].type == 1)
+                                printf("REAL\n");
+                            if (stk[funCount].fptr[i].type == 0)
+                                printf("INT\n");
+                            if (stk[funCount].fptr[i].type == 2)
+                                printf("STRING\n");
+                    }
                 }
 
 
