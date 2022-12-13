@@ -83,11 +83,17 @@ int yyparse();
 [#][^#]+[#]								 {printf("\nComment\n");}
 [0-9]+  								 {yylval.integer = atoi(yytext);return INTEGER;}
 [0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		 {yylval.real=atof(yytext); return REAL;}
-"module"[ ]								 {printf(" declare_Function");}
-"goto"[ ]+			 					 {printf(" call_Function");}
-[@][A-Za-z0-9]+ 						 {printf(" Array ");}
-\"(\\|[^"\\])*\"						 {printf(" String ");}
-[,.(){}\]\[]	 						 {printf("%s ",yytext);}
+
+[@][A-Za-z0-9]+ 						 {yylval.string = strdup(yytext); return ARRAY;}
+\"(\\|[^"\\])*\"						 {
+												char* tmp = strdup(yytext);
+												int n = strlen(tmp);
+												yylval.string = malloc(n*sizeof(char));
+  												memcpy(yylval.string,&tmp[1],n-2);
+												yylval.string[n-2]='\0';
+												return STRING;
+										}
+[,.(){}\]\[]	 						 {return yytext[0];}
 [ \t\n]									 {}
 .										 {printf("\nUnknown character%s\n", yytext);}
 %%

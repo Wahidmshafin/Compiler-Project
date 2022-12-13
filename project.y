@@ -58,8 +58,14 @@
     stack *fptr; // Pointer for functions
 
     int varCount=0, funCount=0;
-    int varTaken=0, funCount=0;
+    int varTaken=0, funTaken=0;
     int conditionMatched=0;
+
+//  For Array
+    int *tmpInteger;
+    double *tmpDouble;
+    char **tmpString;
+    int array_size=0;
 
 
     /* Get the index of variable that is called. If not found return -1. */
@@ -251,19 +257,18 @@
 }
 
 
-%token ROOT END START VARIABLE ARRAY_VAR EOL ARROW RARROW 
+%token ROOT END START VARIABLE ARRAY EOL ARROW RARROW 
 %token INTEGER REAL STRING INTEGER_TYPE REAL_TYPE STRING_TYPE
 %token DISPLAY TAKE
 %token AND OR NOT XOR LOG LOG2 LN SIN COS TAN FACTORIAL SQRT
 %token IF ELIF ELSE CHOICE DEFAULT OPTION ASSIGN
 %token FROM TO REPEAT UNTILL BY AS
 %token MODULE GOTO SORT COMMENT
-%token statements
 
 
 
-%type <integer> INTEGER ROOT END START program while_conditions
-%type <string> VARIABLE INTEGER_TYPE REAL_TYPE STRING_TYPE STRING ARRAY_VAR COMMENT
+%type <integer> INTEGER ROOT END START project while_conditions
+%type <string> VARIABLE INTEGER_TYPE REAL_TYPE STRING_TYPE STRING ARRAY COMMENT
 %type <real> expr REAL statements statement 
 %nonassoc ELIF 
 %nonassoc ELSE
@@ -278,23 +283,17 @@
 %left SIN COS TAN
 
 %%
-program:    ROOT START statements END 
+project:    ROOT START statements END 
                 {
                     printf("\n\n     -------Program Compiled Successfully-------\n\n\n");
                 }
 ;
 
-statements:     
+statements:     {}
                 |statements statement   {}
 ;
 
 statement:      EOL     {}
-                |COMMENT
-                {
-                    SetColor(1);
-                    printf(" %s\n",$1);
-                    SetColor(2);
-                }
                 |declaration    EOL     {}
                 |assigns    EOL     {}
                 |display    EOL     {}
@@ -307,24 +306,73 @@ statement:      EOL     {}
                     SetColor(2);
                 }
                 |if_statements  {conditionMatched=0}
+                |array_statements   {}
                 |loop_statements    {}
+                |goto_module    {}
                 |module_statements
                 {
                     SetColor(8);
                     printf("Module Name: %s\n",fptr[funCount].fname);
                     printf("Paremerters: \n");
+                    char *c;
                     for(int i=0;i<fptr[funCount].varCount;i++)
                     {
-                         printf("Parameter Name:%s Data Type: ",stk[funCount].fptr[i].name);
                             if (stk[funCount].fptr[i].type == 1)
-                                printf("REAL\n");
+                                c="Real";
                             if (stk[funCount].fptr[i].type == 0)
-                                printf("INT\n");
+                                c="Int";
                             if (stk[funCount].fptr[i].type == 2)
-                                printf("STRING\n");
+                                c="String";
+                            
+                            printf("Parameter Name:%s Data Type: %s",stk[funCount].fptr[i].name,c);
                     }
-                }
 
+                    funCount++;
+                    SetColor(2);
+                }
+;
+
+declaration:    INTEGER_TYPE integer_variable
+                |REAL_TYPE real_variable
+                |STRING_TYPE string_variable
+;
+
+integer_variable:   integer_variable "," integer_statements
+                    |integer_statements
+;
+
+
+integer_statements:     VARIABLE ASSIGN expr
+                        {
+                            int declared = getVariableIndex($1);
+                            if(declared==-1)
+                            {
+                                int value = $3;
+                                insertData($1, &value, 0, varCount, 1, 0);
+                                varCount++;
+                            }
+                            else
+                            {
+                                alreadyExist($1);
+                            }
+                        }
+                        |VARIABLE
+                        {
+                            int value = 0;
+                            insertData($1, &value, 0, varCount, 1, 0);
+                            varCount++;
+                        }
+                        |ARRAY
+                        {
+                            insertData($1, &tmpInteger, 0, varCount, array_size, 0);
+                            varCount++;
+                        }
+                        |
+
+;
+
+
+                        
 
 %%
 
