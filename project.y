@@ -364,11 +364,141 @@ integer_statements:     VARIABLE ASSIGN expr
                         }
                         |ARRAY
                         {
-                            insertData($1, &tmpInteger, 0, varCount, array_size, 0);
+                            insertData($1, tmpInteger, 0, varCount, array_size, 1);
                             varCount++;
                         }
-                        |
+                        |ARRAY ASSIGN "{" integer_values "}"
+                        {
+                            insertData($1, tmpInteger, 0, varCount, array_size, 1);
+                            varCount++;
+                            array_size=0;
+                            free(tmpInteger);
+                        }
 
+;
+
+integer_values:     integer_values "," expr
+                    {
+                        array_size++;
+                        tmpInteger = realloc(tmpInteger, array_size*sizeof(int));
+                        tmpInteger[array_size-1] = $3;
+                    }
+                    |expr
+                    {
+                        array_size++;
+                        tmpInteger = realloc(tmpInteger, array_size*sizeof(int));
+                        tmpInteger[array_size-1] = (int)$1;
+                    }
+;
+
+
+real_variable:      real_variable "," real_statements
+                    |real_statements
+;
+
+
+real_statements:        VARIABLE ASSIGN expr
+                        {
+                            int declared = getVariableIndex($1);
+                            if(declared==-1)
+                            {
+                                double value = $3;
+                                insertData($1, &value, 0, varCount, 1, 0);
+                                varCount++;
+                            }
+                            else
+                            {
+                                alreadyExist($1);
+                            }
+                        }
+                        |VARIABLE
+                        {
+                            double value = 0;
+                            insertData($1, &value, 0, varCount, 1, 0);
+                            varCount++;
+                        }
+                        |ARRAY
+                        {
+                            insertData($1, tmpDouble, 0, varCount, array_size, 1);
+                            varCount++;
+                        }
+                        |ARRAY ASSIGN "{" real_values "}"
+                        {
+                            insertData($1, tmpDouble, 0, varCount, array_size, 1);
+                            varCount++;
+                            array_size=0;
+                            free(tmpDouble);
+                        }
+
+;
+
+real_values:        real_values "," expr
+                    {
+                        array_size++;
+                        tmpDouble = realloc(tmpDouble, array_size*sizeof(double));
+                        tmpDouble[array_size-1] = $3;
+                    }
+                    |expr
+                    {
+                        array_size++;
+                        tmpDouble = realloc(tmpDouble, array_size*sizeof(double));
+                        tmpDouble[array_size-1] = (double)$1;
+                    }
+;
+
+
+string_variable:    string_variable "," string_statements
+                    |string_statements
+;
+
+
+string_statements:      VARIABLE ASSIGN expr
+                        {
+                            int declared = getVariableIndex($1);
+                            if(declared==-1)
+                            {
+                                int value = $3;
+                                insertData($1, &value, 0, varCount, 1, 0);
+                                varCount++;
+                            }
+                            else
+                            {
+                                alreadyExist($1);
+                            }
+                        }
+                        |VARIABLE
+                        {
+                            int value = 0;
+                            insertData($1, &value, 0, varCount, 1, 0);
+                            varCount++;
+                        }
+                        |ARRAY
+                        {
+                            insertData($1, tmpString, 0, varCount, array_size, 1);
+                            varCount++;
+                        }
+                        |ARRAY ASSIGN "{" string_values "}"
+                        {
+                            insertData($1, tmpString, 0, varCount, array_size, 1);
+                            varCount++;
+                            array_size=0;
+                            free(tmpString);
+                        }
+
+;
+
+string_values:      string_values "," expr
+                    {
+                        array_size++;
+                        tmpString = realloc(tmpString, array_size*sizeof());
+                        tmpString[array_size-1] = $3;
+                    }
+                    |expr
+                    {
+                        array_size++;
+                        tmpString = realloc(tmpString, array_size*sizeof(int));
+                        tmpString[array_size-1] = (int)$1;
+                    }
 ;
 
 
