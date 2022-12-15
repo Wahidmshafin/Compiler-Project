@@ -43,7 +43,7 @@
      END = 259,
      START = 260,
      VARIABLE = 261,
-     ARRAY_VAR = 262,
+     ARRAY = 262,
      EOL = 263,
      ARROW = 264,
      RARROW = 265,
@@ -83,21 +83,21 @@
      MODULE = 299,
      GOTO = 300,
      SORT = 301,
-     statements = 302,
-     GREATER = 303,
-     LESS = 304,
-     GOE = 305,
-     LOE = 306,
-     NOT_EQUAL = 307,
-     EQUAL = 308,
-     MOD = 309,
-     POWER = 310,
-     DIV = 311,
-     MUL = 312,
-     MINUS = 313,
-     PLUS = 314,
-     MMINUS = 315,
-     PPLUS = 316
+     COMMENT = 302,
+     MMINUS = 303,
+     PPLUS = 304,
+     MOD = 305,
+     POWER = 306,
+     DIV = 307,
+     MUL = 308,
+     MINUS = 309,
+     PLUS = 310,
+     GREATER = 311,
+     LESS = 312,
+     GOE = 313,
+     LOE = 314,
+     NOT_EQUAL = 315,
+     EQUAL = 316
    };
 #endif
 
@@ -108,7 +108,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 241 "project.y"
+#line 193 "project.y"
 
 	int integer;
 	double real;

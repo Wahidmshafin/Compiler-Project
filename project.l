@@ -43,8 +43,10 @@ int yyparse();
 ">"										 {return GREATER;}
 
 
-"display"[ ]*"->"						 {return DISPLAY;}
-"take"[ ]*"<-"							 {return TAKE;}
+"display"								 {return DISPLAY;}
+"->"									 {return ARROW;}
+"take"									 {return TAKE;}
+"<-"									 {return RARROW;}
 
 
 "^"										 {return XOR;}
@@ -59,6 +61,7 @@ int yyparse();
 "SQR" 									 {return SQRT;}
 "log" 									 {return LOG;}
 "ln"  									 {return LN;}
+"!"										 {return FACTORIAL;}
 
 
 "if"									 {return IF;}
@@ -84,6 +87,7 @@ int yyparse();
 [0-9]+  								 {yylval.integer = atoi(yytext);return INTEGER;}
 [0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		 {yylval.real=atof(yytext); return REAL;}
 
+[A-Za-z0-9]+ 							 {yylval.string = strdup(yytext);return VARIABLE;}
 [@][A-Za-z0-9]+ 						 {yylval.string = strdup(yytext); return ARRAY;}
 \"(\\|[^"\\])*\"						 {
 												char* tmp = strdup(yytext);
