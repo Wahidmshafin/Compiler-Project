@@ -7,11 +7,13 @@
     #include <windows.h>
     #include <io.h>
     #include <direct.h>
+    #define YYDEBUG 1
 
    
 
     /*---Flex handling---*/
     extern FILE *yyin;
+    extern FILE *yyout;
 	int yylex();
 	int yyparse();
     int yyerror(char *s);
@@ -45,7 +47,8 @@
     /* Get the index of variable that is called. If not found return -1. */
         int getVariableIndex(char *varName)
         {
-            for(int i = 0 ; i<varCount; i++){
+            for(int i = 0 ; i<varCount; i++)
+            {
                 if(strcmp(vptr[i].name,varName)==0){
                     return i;
                 }
@@ -160,7 +163,7 @@
 
         /* Taking Input From User */
          int takeInput(char *varName, int id ){
-            printf("Enter Value of %s: ",varName);
+            printf("Enter Value of %s:\n ",varName);
             int index = getVariableIndex(varName);
             if (index == -1)
             {
@@ -207,13 +210,21 @@
 %nonassoc ELSE
 
 
-%left EQUAL NOT_EQUAL LOE GOE LESS GREATER PLUS MINUS MUL DIV POWER MOD PPLUS MMINUS AND OR XOR NOT LOG LOG2 LN SQRT SIN COS TAN
+%left PPLUS MMINUS
+%left AND OR XOR NOT
+%left LOG LOG2 LN SQRT 
+%left GREATER LESS EQUAL NOT_EQUAL LOE GOE
+%left  PLUS MINUS
+%left  MUL DIV MOD
 %right  '^' FACTORIAL
 
+%left POWER SIN COS TAN
+
 %%
-project:    ROOT START statements END 
+project:    ROOT START statements END
                 {
                     printf("\n\n     -------Program Compiled Successfully-------\n\n\n");
+                    exit(-1);
                 }
 ;
 
@@ -223,14 +234,11 @@ statements:     {}
 
 statement:      EOL     {}
                 |declaration    EOL     {}
-                |expr       EOL
-                {
-                    printf("Expression: %.2lf\n",$1);
-                    $$=$1;
-                }
+                
                 |assign EOL        {}
                 |DISPLAY ARROW print EOL    {}
                 |TAKE RARROW scan EOL   {}
+                |IF if_block else_statement   {}
                 
                 
 ;
@@ -245,7 +253,7 @@ integer_variable:   integer_variable ',' integer_statements
 ;
 
 
-integer_statements:     VARIABLE ASSIGN INTEGER
+integer_statements:     VARIABLE ASSIGN expr
                         {
                             int declared = getVariableIndex($1);
                             if(declared==-1)
@@ -280,13 +288,13 @@ integer_statements:     VARIABLE ASSIGN INTEGER
 
 ;
 
-integer_values:     integer_values ',' INTEGER
+integer_values:     integer_values ',' expr
                     {
                         array_size++;
                         tmpInteger = realloc(tmpInteger, array_size*sizeof(int));
                         tmpInteger[array_size-1] = $3;
                     }
-                    |INTEGER
+                    |expr
                     {
                         array_size++;
                         tmpInteger = realloc(tmpInteger, array_size*sizeof(int));
@@ -300,7 +308,7 @@ real_variable:      real_variable ',' real_statements
 ;
 
 
-real_statements:        VARIABLE ASSIGN REAL
+real_statements:        VARIABLE ASSIGN expr
                         {
                             int declared = getVariableIndex($1);
                             if(declared==-1)
@@ -335,13 +343,13 @@ real_statements:        VARIABLE ASSIGN REAL
 
 ;
 
-real_values:        real_values ',' REAL
+real_values:        real_values ',' expr
                     {
                         array_size++;
                         tmpDouble = realloc(tmpDouble, array_size*sizeof(double));
                         tmpDouble[array_size-1] = $3;
                     }
-                    |REAL
+                    |expr
                     {
                         array_size++;
                         tmpDouble = realloc(tmpDouble, array_size*sizeof(double));
@@ -445,17 +453,38 @@ assign:         VARIABLE ASSIGN expr
                 }
 ;
 
-print:      print ',' VARIABLE                  {printVariable($3);}             
-                
+print:      //print ',' VARIABLE                  {printVariable($3);}             
+            print ',' expr                      
+            {
+                if(floor($3)==ceil($3))
+                printf("Value: %d\n",(int)$3);
+                else
+                printf("Value: %lf\n",$3);
+            }    
+            
             |print ',' ARRAY                    {printVariable($3);}        
                 
             |print ',' ARRAY '[' INTEGER ']'    {printArrayIndex($3,$5);}
-                
-            |VARIABLE                           {printVariable($1);}   
+
+            |print STRING                       {printf("%s\n",$2);}
+            
+            |expr
+            {
+                if(floor($1)==ceil($1))
+                printf("Value: %d\n",(int)$1);
+                else
+                printf("Value: %lf\n",$1);
+            }
+
+            |STRING                             {printf("%s\n",$1);}
+
+            //|VARIABLE                           {printVariable($1);}   
             
             |ARRAY                              {printVariable($1);}
                 
             |ARRAY'[' expr ']'                  {printArrayIndex($1,$3);}
+            
+            
                 
 ;
 
@@ -470,6 +499,71 @@ scan:       scan ',' VARIABLE                   {takeInput($3,0);}
 ;
 
 
+if_block:       expr START statement END 
+                {
+                    int isTrue = (fabs($1)>1e-9);
+                    if(isTrue){
+                        printf("IF block: TRUE.\n");
+                        conditionMatched = 1;
+                    }
+                    else
+                    {
+                        printf("IF block: FALSE.\n");
+                    }
+                }
+;
+
+else_statement: elif_statement   single_else
+                |single_else
+;
+
+
+single_else: ELSE START statement END
+                {
+                    
+                    if(conditionMatched==0)
+                    {
+                            printf("ELSE block: FALSE.\n");
+                            conditionMatched = 1;
+                    }
+                    else
+                    {
+                            printf("ELSE block: TRUE.\n");
+                    }
+                      
+                }
+    ;
+elif_statement: elif_statement  single_elif
+                |single_elif 
+    ;
+single_elif:    ELIF expr START statement END
+                {
+                    if(conditionMatched==0)
+                    {
+                        int isTrue = (fabs($2)>1e-9);
+                        if(isTrue)
+                        {
+                            printf("ELIF block: TRUE.\n");
+                            conditionMatched = 1;
+                        }
+                        else
+                        {
+                            printf("ELIF block: FALSE.\n");
+                        }
+                       
+                    }
+                    else
+                    {
+                        printf("ELIF block: TRUE.\n");
+                    }
+                    
+                }
+;
+
+
+
+
+
 expr:       INTEGER {$$=$1;}                 
                                          
             |REAL {$$=$1;}       
@@ -477,9 +571,9 @@ expr:       INTEGER {$$=$1;}
             |VARIABLE             
             {
                 int id = getVariableIndex($1);
-                if(id==-1) printf("Variable %s already exists",$1);
+                if(id==-1) printf("Variable %s already doesn't exist\n",$1);
                 else if(vptr[id].type==2){
-                   printf("Not a number");
+                    printf("String: %s\n",vptr[id].sval[0]);
                 }
                 else if(vptr[id].type==0) $$ = vptr[id].ival[0];
                 else $$ = vptr[id].dval[0];
@@ -566,7 +660,7 @@ expr:       INTEGER {$$=$1;}
             |expr FACTORIAL   
             {
                 int cl = ceil($1);int fl = floor($1);
-                if(cl!=fl) printf("can't find FACTORIAL of real number.");
+                if(cl!=fl) printf("can't find FACTORIAL of real number\n");
                 else {
                     long long x = 1;
                     for(long long i=1;i<=$1;i++) x*=i;
@@ -584,7 +678,9 @@ int main(int argc, char **argv)
 //yydebug= 1;
     vptr = realloc(vptr,8*sizeof(var));
     varTaken=100;
-	yyin = fopen (argv[1],"r");
+    //yyin = fopen (argv[1],"r");
+	yyin = freopen("myinput.txt","r",stdin);
+	yyout = freopen("out.txt","w",stdout);
     printf("\n\n     -------Starting Program Execution-------\n\n\n");
 	yyparse();
 	return 0;

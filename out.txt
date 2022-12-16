@@ -1,86 +1,59 @@
-ROOT
 
-Start of block
- Integer_type  Variable =  Integer;
- Integer_type  Variable =  Integer;
- Real_type  Variable =  Integer +  Integer -  Integer;
- String_type  Variable;
- Read  Variable;
- Integer_type  Array  = {  Integer,  Integer,  Integer,  Integer,  Integer} ;
- Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array ;
- Read  Variable;
- Integer_type  Array  = {  Integer,  Integer,  Integer,  Integer,  Integer} ;
- Print  Variable,  Variable,  Variable,  Variable,  Variable,  Array ;
 
-Comment
- Array .insert (  Integer) ;
- Array .insert (  Integer) ;
- Array .sort array
-;
- Print  Array ;
- Array .remove ( ) ;
- String_type  Array  = {  String ,  String ,  String } ;
- Print  Array ,  Array ;
- for  Integer to  Integer by  Integer
-Start of block
- Print  Integer +  Integer +  Integer;
-End of block
- Integer_type  Variable =  Integer;
- Variable Variable Greater_than  Integer
-Start of block
- Print  Integer *  Integer /  Integer;
- Variable++ ;
-End of block
+     -------Starting Program Execution-------
 
-Comment
- Print  Variable(  Integer,  Integer) ;
- Print  sin;
- Print  cos;
- Print  log ;
- Print  ln ;
- Print  Square root ;
- Print  factorial ;
 
-Comment
- Variable =  Integer;
- Do 
-Start of block
- Print  Integer *  Integer;
-End of block
- While Variable++  Less_than  Integer;
 
-Comment
- Integer_type  Variable =  Integer;
- if  Variable Greater_than  Integer
-Start of block
- Print  Integer *  Integer *  Integer;
-End of block
- else 
-Start of block
- Print  Integer *  Integer *  Integer;
-End of block
- if  Variable Greater_than  Integer AND  Variable Less_than  Integer
-Start of block
- Print  Integer;
-End of block
- elif  Variable Greater_than  Integer
-Start of block
- Print  Integer;
-End of block
- elif  Variable Greater_than  Integer OR  Variable Less_than  Integer
-Start of block
- Print  Integer;
-End of block
- else 
-Start of block
- Print  Integer;
-End of block
+#Declaration#
 
-Comment
- declare_Function(  Integer_type  Variable,  Integer_type  Variable) 
-Start of block
- Integer_type  Variable =  Variable +  Variable;
-End of block
- call_Function(  Variable,  Variable) ;
- call_Function(  Variable,  Variable) ;
-End of block
+#Array Declaration#
+Value: 5
+Value: 30
+Variable c already doesn't exist
+Value: 5.500000
+Value: 22
+String: dkfj
+Value: 5.500000
+ArrayName: @intArray
+Size: 5
+Elements are: 
+1 2 3 4 5 
+@intArray[3] = 4
+ArrayName: @realArray
+Size: 5
+Elements are: 
+1.100000 2.200000 3.300000 4.400000 5.500000 
+ArrayName: @stringArray
+Size: 2
+Elements are: 
+hello World 
+
+#Mathmatical Operations#
+Value: 0.850904
+Value: 0.525322
+Value: 1.653213
+Value: 3.806662
+Value: 6.708204
+Value: 120
+
+#Conditional operations#
+Value: 6
+IF block: FALSE.
+Value: 24
+ELSE block: FALSE.
+Value: 1
+IF block: FALSE.
+Value: 2
+ELIF block: TRUE.
+Value: 3
+IF block: FALSE.
+Value: 2
+ELSE block: TRUE.
+ELIF block: TRUE.
+Value: 4
+ELSE block: TRUE.
+
+
+     -------Program Compiled Successfully-------
+
+

@@ -1,0 +1,52 @@
+root:
+    #Declaration#
+	int a => 5;
+	int b => 30;
+	real xy => 10+23-11;
+	string str=>"dkfj";
+    
+    #Array Declaration#
+    int @intArray => {1,2,3,4,5};
+    real @realArray => {1.1,2.2,3.3,4.4,5.5};
+    string @stringArray => {"hello", "World"};
+	
+    display->a,b,c,xy,str,@intArray, @intArray[3], @realArray, @stringArray;
+    
+    #Mathmatical Operations#
+	display->SIN(45);
+	display->COS(45);
+	display->log(45);
+	display->ln(45);
+	display->SQR(45);
+	display->a!;
+
+    #Conditional operations#
+
+	int p => 25;
+	if p>30:
+		display->1*2*3;
+	end
+	else:
+		display->2*3*4;
+	end
+
+	if p>20 & p<25:
+		display->1;
+	end
+	elif p>30 :
+		display->2;
+	end
+	elif p>20 | p<10:
+		if p==26:
+            display->3;
+        end
+        else:
+            display->2;
+        end
+	end
+	else:
+		display->4;
+	end
+
+
+end

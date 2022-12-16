@@ -86,18 +86,18 @@
      COMMENT = 302,
      MMINUS = 303,
      PPLUS = 304,
-     MOD = 305,
-     POWER = 306,
-     DIV = 307,
-     MUL = 308,
-     MINUS = 309,
-     PLUS = 310,
-     GREATER = 311,
-     LESS = 312,
-     GOE = 313,
-     LOE = 314,
-     NOT_EQUAL = 315,
-     EQUAL = 316
+     GOE = 305,
+     LOE = 306,
+     NOT_EQUAL = 307,
+     EQUAL = 308,
+     LESS = 309,
+     GREATER = 310,
+     MINUS = 311,
+     PLUS = 312,
+     MOD = 313,
+     DIV = 314,
+     MUL = 315,
+     POWER = 316
    };
 #endif
 
@@ -108,7 +108,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 193 "project.y"
+#line 196 "project.y"
 
 	int integer;
 	double real;

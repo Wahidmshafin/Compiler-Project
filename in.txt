@@ -9,7 +9,7 @@ root:
 	display->a,b,c,xy,str,@ara;
 	take <- str;
 	int @ara => {1,2,3,4,5};
-	display->a,b,c,xy,str,@ara;
+	display->a,b,c,xy,str,@ara, @ara;
 
 	
 

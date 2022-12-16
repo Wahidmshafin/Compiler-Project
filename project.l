@@ -77,13 +77,13 @@ int yyparse();
 
 "module"								 {return MODULE;}
 "goto"									 {return GOTO;}
-"sort"									 {return SORT;}
+"sort()"								 {return SORT;}
 "add"									 {printf("insert ");}
 "remove"								 {printf("remove ");}
  "."									 {printf(".");}
 
 
-[#][^#]+[#]								 {printf("\nComment\n");}
+[#][^#]+[#]								 {printf("\n%s\n",yytext);}
 [0-9]+  								 {yylval.integer = atoi(yytext);return INTEGER;}
 [0-9]*[.][0-9]+([eE][+-]?[0-9]+)?		 {yylval.real=atof(yytext); return REAL;}
 
