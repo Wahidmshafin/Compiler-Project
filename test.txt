@@ -7,6 +7,7 @@ Variable c already doesn't exist
 Value: 0.000000
 Value: 5
 Value: 30
+Value: 4
 
 #Array Declaration#
 Value: 21.200000

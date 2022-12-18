@@ -6,7 +6,6 @@ root:
 	string str=>"dkfj";
     display->a, b;
 	display->4;
-	a=>6;
 	
     #Array Declaration#
     int @intArray => {1,2,3,4,5};
