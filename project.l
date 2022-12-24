@@ -78,8 +78,6 @@ int yyparse();
 "module"								 {return MODULE;}
 "goto"									 {return GOTO;}
 "sort()"								 {return SORT;}
-"add"									 {printf("insert ");}
-"remove"								 {printf("remove ");}
  "."									 {printf(".");}
 
 
