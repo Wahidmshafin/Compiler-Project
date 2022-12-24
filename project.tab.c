@@ -3025,7 +3025,7 @@ int main(int argc, char **argv)
     //yyin = fopen (argv[1],"r");
 	yyin = freopen("input.txt","r",stdin);
 	//yyout = freopen("myoutput.txt","w",stdout);
-	yyout = freopen("out.txt","w",stdout);
+	yyout = freopen("output.txt","w",stdout);
     
     printf("\n\n     -------Starting Program Execution-------\n\n\n");
 	yyparse();
